@@ -1,0 +1,68 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int testfälle = Convert.ToInt32(Console.ReadLine());
+            
+            for (int x = 0; x < testfälle; x++)
+            {
+                int sitz = Convert.ToInt32(Console.ReadLine());
+                int abteil = sitz / 12;
+                int dummy = sitz - abteil * 12;
+                int sitzG = 0;
+                int SG = 0;
+                
+                if (dummy < 7)
+                {
+                    SG = 13;
+                    for (int y = 1; y < 7; y++)
+                    {
+                        SG -= 2;
+                        sitzG = y + SG;
+                        if (y == dummy)
+                        {
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    SG = 0;
+                    for (int y = 1; y < 7; y++)
+                    {
+                        SG += 2;
+                        sitzG = y - SG;
+                        if (y == dummy)
+                        {
+                            break;
+                        }
+                    }
+                }
+                
+                string lage ="";
+                switch(sitzG)
+                {
+                    case 1: case 12: case 6: case 7:
+                    lage = "WS";
+                    break;
+                    case 2: case 11: case 5: case 8:
+                    lage = "MS";
+                    break;
+                    case 3: case 10: case 4: case 9:
+                    lage = "AS";
+                    break;
+                }
+                sitzG = sitzG + abteil * 12;
+                Console.WriteLine(sitzG + " " + lage);
+            }
+        }
+    }
+}
